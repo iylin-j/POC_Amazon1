@@ -32,11 +32,3 @@ test('Validate if user is able to Create new Account', async ({ page }) => {
   await expect(page).toHaveURL("https://www.amazon.in/");
   await amazonHomePage.validateSignUpPage();
 });
-
-// test('Validate if user is able to change to 8 languages for the application', async ({ page }) => {
-//   const amazonHomePage = new AmazonHomePage(page);
-
-//   await page.goto('https://www.amazon.in/');
-//   await expect(page).toHaveURL("https://www.amazon.in/");
-//   await amazonHomePage.validateApplicationLanguages();
-// });

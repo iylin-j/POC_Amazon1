@@ -64,23 +64,4 @@ export default class AmazonHomePage {
         await continueButton.click();
         expect(this.page.url(), "User is in Created Account Page").toContain("https://www.amazon.in/ap/cvf/request?")
     }
-
-    // async validateApplicationLanguages(){
-    //     var languageButton = this.page.locator("a#icp-nav-flyout>span>span:nth-of-type(2)>div");
-    //     var languagesRadioButton = this.page.locator("label > span > span>[dir='ltr']:nth-child(1)");
-    //     var saveChangesButton = this.page.locator(".a-button-input")
-
-    //     await languageButton.click();
-    //     expect(this.page.url(), "User is in Customer Preferences Language Page").toContain("https://www.amazon.in/customer-preferences/edit?ie=UTF8&preferencesReturnUrl=%2F&ref_=topnav_lang")
-
-    //     const count = await languagesRadioButton.count();
-    //     console.log("COUNT",count);
-    //     for (let index = 1; index <= count; index++) {
-    //         await languagesRadioButton.locator(`nth=${index}`).click();
-    //         await saveChangesButton.click();
-    //         await this.page.goBack();
-    //         await expect(languagesRadioButton.locator(`nth=${index}`), `User has selected as ${languagesRadioButton.locator(`nth=${index}`).textContent()} language`).toContainText(`${languagesRadioButton.locator(`nth=${index}`).textContent()}`);
-    //     }
-    // }
-
 }
