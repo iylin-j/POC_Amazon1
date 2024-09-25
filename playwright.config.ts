@@ -21,8 +21,48 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
+  use: {headless: false},
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    ["allure-playwright",
+      {
+        detail: true,
+        outputFolder: "allure-results",
+        suiteTitle: true,
+        environmentInfo: {
+          framework: "playwright",
+        },
+      },],
+    ["junit", { outputFile: "playwright-report/e2e-junit-results.xml" }],
+    ['list'],
+    ['html'],
+    // [
+    //   '@alex_neo/playwright-azure-reporter',
+    //   {
+    //     orgUrl: 'https://dev.azure.com/dh-platforms-devops',
+    //     token: process.env.ADO_TOKEN,
+    //     planId: 887184,
+    //     projectName: 'app-data-hubs',
+    //     environment: 'Turbine - Test Environment',
+    //     logging: true,
+    //     testRunTitle: 'Playwright Test Run',
+    //     publishTestResultsMode: 'testRun',
+    //     uploadAttachments: true,
+    //     attachmentsType: ['screenshot', 'video', 'trace'],
+    //     testRunConfig: {
+    //       owner: {
+    //         displayName: 'Iylin Jacob'
+    //       },
+    //       comment: 'Playwright Test Run',
+    //       // the configuration ids of this test run, use 
+    //       // https://dev.azure.com/{organization}/{project}/_apis/test/configurations to get the ids of  your project.
+    //       // if multiple configuration ids are used in one run a testPointMapper should be used to pick the correct one, 
+    //       // otherwise the results are pushed to all.
+    //       configurationIds: [10],
+    //     },
+    //   } as AzureReporterOptions,
+    // ],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -39,15 +79,15 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
     // {

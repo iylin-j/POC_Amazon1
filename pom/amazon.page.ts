@@ -1,5 +1,4 @@
 import { expect, Locator, Page } from "@playwright/test";
-// import { allure } from "allure-playwright"
 
 export default class AmazonHomePage {
     readonly page: Page;
@@ -20,6 +19,7 @@ export default class AmazonHomePage {
     }
 
     async validateSearchBarDropDown(): Promise<void> {
+        
         var searchTextBox = this.page.locator("#twotabsearchtextbox");
         var searchBarDropDown = this.page.locator("div.two-pane-results-container .left-pane-results-container .s-suggestion-container .s-suggestion");
         await searchTextBox.fill("iphone 16");
